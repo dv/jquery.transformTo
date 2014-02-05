@@ -1,8 +1,8 @@
-= jquery.transformTo =
+# jquery.transformTo
 
 This library adds a handy method to jQuery elements that allows you to declaratively specify what dimensions and positions you'd like the element to have. The library then calculates the necessary translation and scaling required, and applies them using CSS transforms. During animations, these transforms are much more performant compared to editing the `left`, `top`, `width` or `height` CSS attributes.
 
-== How To ==
+## How To
 
 Here's some examples. Currently we support the `x`, `y`, `width` and `height` properties:
 ```javascript
@@ -24,6 +24,6 @@ $("#first").transformTo({width: "400px", x: "100px"});
 // be 100px.
 ```
 
-= See Also =
+# See Also
 
 * For more info about performance in animations: http://www.html5rocks.com/en/tutorials/speed/high-performance-animations/
