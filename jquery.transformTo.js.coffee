@@ -29,7 +29,7 @@ $.fn.extend
       $height = $this.height()
 
       currently = $this.data('transformTo') || {}
-      transforms = {}
+      transforms = {scaleX: 1, scaleY: 1}
  
       # set scale
       if settings.width
@@ -39,11 +39,11 @@ $.fn.extend
         transforms.scaleY = settings.height / $height
 
       # set translate
-      if settings.x
+      if settings.x || (transforms.scaleX != 1)
         scaleExtraLeft = ($width/2)*(1-transforms.scaleX)
         transforms.translateX = (settings.x - ($this.css("left") + scaleExtraLeft))/transforms.scaleX
 
-      if settings.y
+      if settings.y || (transforms.scaleY != 1)
         scaleExtraTop = ($height/2)*(1-transforms.scaleY)
         transforms.translateY = (settings.y - ($this.css("top") + scaleExtraTop))/transforms.scaleY
 
@@ -52,8 +52,8 @@ $.fn.extend
 
       # generate transform string
       transformValue  = ""
-      transformValue += "scaleX(#{transforms.scaleX}) "           if transforms.scaleX?
-      transformValue += "scaleY(#{transforms.scaleY}) "           if transforms.scaleY?
+      transformValue += "scaleX(#{transforms.scaleX}) "           if transforms.scaleX? && transforms.scaleX != 1
+      transformValue += "scaleY(#{transforms.scaleY}) "           if transforms.scaleY? && transforms.scaleY != 1
       transformValue += "translateX(#{transforms.translateX}px) " if transforms.translateX?
       transformValue += "translateY(#{transforms.translateY}px) " if transforms.translateY?
 
