@@ -27,6 +27,8 @@ $.fn.extend
       $this = $(this)
       $width = $this.width()
       $height = $this.height()
+      currentLeft = if isNaN($this.css('left')) then 0 else $this.css('left')
+      currentTop = if isNaN($this.css('top')) then 0 else $this.css('top')
 
       currently = $this.data('transformTo') || {}
       transforms = {scaleX: 1, scaleY: 1}
@@ -41,11 +43,11 @@ $.fn.extend
       # set translate
       if settings.x || (transforms.scaleX != 1)
         scaleExtraLeft = ($width/2)*(1-transforms.scaleX)
-        transforms.translateX = (settings.x - ($this.css("left") + scaleExtraLeft))/transforms.scaleX
+        transforms.translateX = (settings.x - (currentLeft + scaleExtraLeft))/transforms.scaleX
 
       if settings.y || (transforms.scaleY != 1)
         scaleExtraTop = ($height/2)*(1-transforms.scaleY)
-        transforms.translateY = (settings.y - ($this.css("top") + scaleExtraTop))/transforms.scaleY
+        transforms.translateY = (settings.y - (currentTop + scaleExtraTop))/transforms.scaleY
 
       # save transforms
       $this.data('transformTo', transforms)
